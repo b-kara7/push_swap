@@ -6,7 +6,7 @@
 /*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 16:04:30 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/18 20:37:41 by bkara            ###   ########.fr       */
+/*   Updated: 2025/10/19 19:14:56 by bkara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static	void	rotate(t_list **stack)
 	t_list	*first;
 	t_list	*second;
 
-	if(!stack || !*stack || !(*stack)->next)
+	if (!stack || !*stack || !(*stack)->next)
 		return;
 	first = *stack;
 	second = (*stack)->next;

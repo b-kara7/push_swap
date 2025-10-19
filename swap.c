@@ -6,18 +6,18 @@
 /*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:36:53 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/04 17:50:21 by bkara            ###   ########.fr       */
+/*   Updated: 2025/10/19 19:14:20 by bkara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static	void	swap(t_list **stack)
+static void	swap(t_list **stack)
 {
 	t_list	*first;
 	t_list	*second;
-	
-	if(!stack ||!*stack ||!(*stack)->next)
+
+	if (!stack ||!*stack ||!(*stack)->next)
 		return;
 	first = *stack;
 	second = (*stack)->next;

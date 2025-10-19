@@ -6,7 +6,7 @@
 /*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:12:36 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/18 19:47:29 by bkara            ###   ########.fr       */
+/*   Updated: 2025/10/19 20:41:06 by bkara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ typedef struct s_list
 void	first_push_b(t_list **a, t_list **b);
 int	ft_listsize(t_list *stack);
 void	turk_algorithm(t_list **a, t_list **b);
-int	ft_atoi(const char *str);
 t_list	*ft_lstnew(int content);
 void	ft_lstadd_back(t_list ** lst, t_list *new_node);
-
+char	**ft_split(char const *s, char c);
+int	ft_atoi_ps(const char *str);
 
 void	sa(t_list **x);
 void	sb(t_list **y);

@@ -6,7 +6,7 @@
 /*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 16:40:41 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/04 17:51:17 by bkara            ###   ########.fr       */
+/*   Updated: 2025/10/19 19:15:30 by bkara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static	void	push(t_list **start, t_list **end)
 {
 	t_list	*first;
 	
-	if(!start || !*start)
+	if (!start || !*start)
 		return;
 	first = *start;
 	*start = first->next;

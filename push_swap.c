@@ -6,22 +6,19 @@
 /*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:12:33 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/18 20:45:21 by bkara            ###   ########.fr       */
+/*   Updated: 2025/10/19 19:18:48 by bkara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    turk_algorithm(t_list **a, t_list **b)
+void	turk_algorithm(t_list **a, t_list **b)
 {
-    first_push_b(a, b);
-    while (ft_listsize(*a) > 3)
-    {
-        
-
-        pb(a, b);
-    }
-    
+	first_push_b(a, b);
+	while (ft_listsize(*a) > 3)
+	{
+		pb(a, b);
+	}
 }
 
 

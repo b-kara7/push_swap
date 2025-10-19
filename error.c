@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/24 11:50:45 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/19 19:13:17 by bkara            ###   ########.fr       */
+/*   Created: 2025/10/19 17:45:19 by bkara             #+#    #+#             */
+/*   Updated: 2025/10/19 19:34:37 by bkara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int ac, char **av)
+void	ft_error_exit(void)
 {
-	t_list *stack_a;
-	t_list *stack_b;
-	char **res;
-
-	stack_a = NULL;
-	stack_b = NULL;
-	res = NULL;
-
-	if(ac < 2)
-		return 0;
-	if(ac == 2)
+	write(2, "ERROR\n", 6);
+	exit(1);
+}
+void	number_error(char *str)
+{
+	int	i;
+	
+	i = 0;
+	
+	if (!str || !str[0])
+	ft_error_exit();
+	
+	if (str[i] == '-' || str[i] == '+')
 	{
-		res = (ft_split(av[1], ' '));
-		if(!res)
-			return(1);
+		if (!str)
+			ft_error_exit();
 	}
-	else
+	while (str[i])
 	{
-		res = av + 1;
+		if ( !(str[i] >= '0' && str[i] <= '9') )
+			ft_error_exit();
+		i++;
 	}
 }

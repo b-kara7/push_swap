@@ -9,7 +9,8 @@ SRCS = main.c \
 				rotate.c \
 				swap.c \
 				reverse_rotate.c \
-				first_push_b.c 
+				first_push_b.c \
+				ft_split.c 
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 16:26:11 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/04 17:50:05 by bkara            ###   ########.fr       */
+/*   Updated: 2025/10/19 19:15:10 by bkara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static	void	reverse_rotate(t_list **stack)
 	t_list	*first;
 	t_list	*second;
 	
-	if(!stack || !*stack || !(*stack)->next)
+	if (!stack || !*stack || !(*stack)->next)
 		return;
 	first = *stack;
 	while(first->next && first->next->next)
