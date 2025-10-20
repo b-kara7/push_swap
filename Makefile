@@ -3,30 +3,34 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 SRCS = main.c \
-				utils.c \
-				push_swap.c \
-				push.c \
-				rotate.c \
-				swap.c \
-				reverse_rotate.c \
-				first_push_b.c \
-				ft_split.c 
+	utils.c \
+	push_swap.c \
+	push.c \
+	rotate.c \
+	swap.c \
+	reverse_rotate.c \
+	first_push_b.c \
+	ft_split.c \
+	ft_free_split.c \
+	ft_atoi_ps.c \
+	position.c \
+	error.c
 
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-		$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 %.o: %.c
-		$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-		rm -f $(OBJS)
-		
+	rm -f $(OBJS)
+
 fclean: clean
-		rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 

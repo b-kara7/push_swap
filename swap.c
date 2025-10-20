@@ -6,7 +6,7 @@
 /*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:36:53 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/19 19:14:20 by bkara            ###   ########.fr       */
+/*   Updated: 2025/10/20 19:24:25 by bkara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@ static void	swap(t_list **stack)
 	t_list	*first;
 	t_list	*second;
 
-	if (!stack ||!*stack ||!(*stack)->next)
-		return;
+	if (!stack || !*stack || !(*stack)->next)
+		return ;
 	first = *stack;
 	second = (*stack)->next;
-	
 	first->next = second->next;
 	second->next = first;
 	*stack = second;
@@ -38,6 +37,7 @@ void	sb(t_list **y)
 	swap(y);
 	write(1, "sb\n", 3);
 }
+
 void	ss(t_list **x, t_list **y)
 {
 	swap(x);

@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   ft_free_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/04 16:40:41 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/20 20:47:31 by bkara            ###   ########.fr       */
+/*   Created: 2025/10/20 21:52:48 by bkara             #+#    #+#             */
+/*   Updated: 2025/10/20 21:54:22 by bkara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static	void	push(t_list **start, t_list **end)
+void	ft_free_split(char **res)
 {
-	t_list	*first;
-
-	if (!start || !*start)
+	int	i;
+	
+	i = 0;
+	if (!res)
 		return ;
-	first = *start;
-	*start = first->next;
-	first->next = *end;
-	*end = first;
-}
-
-void	pa(t_list **x, t_list **y)
-{
-	push(y, x);
-	write(1, "pa\n", 3);
-}
-
-void	pb(t_list **x, t_list **y)
-{
-	push(x, y);
-	write(1, "pb\n", 3);
+	while (res[i])
+	{
+		free(res[i]);
+		i++;
+	}
+	free(res);
 }

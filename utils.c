@@ -6,13 +6,13 @@
 /*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 17:39:13 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/19 20:26:59 by bkara            ###   ########.fr       */
+/*   Updated: 2025/10/20 22:00:33 by bkara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 	
-int	ft_listsize(t_list *stack)
+int	ft_lstsize(t_list *stack)
 {
 	int	count;  // Elemanları saymak için sayaç
 	t_list	*tmp;  // Listede gezinmek için geçici bir işaretçi
@@ -20,7 +20,7 @@ int	ft_listsize(t_list *stack)
 	count = 0;
 	tmp = stack;
 
-	while (tmp !=NULL)
+	while (tmp != NULL)
 	{
 		count++; // Bir eleman bulduk, sayacı 1 artır
 		tmp = tmp ->next;
@@ -41,19 +41,19 @@ t_list	*ft_lstnew(int content)
 	return (new_node);
 }
 // ft_atoi ile sayıyı aldık, lstnew ile kutuya yani new_node a koyduk 
-void	ft_lstadd_back(t_list ** lst, t_list *new_node)
+void	ft_lstadd_back(t_list **lst, t_list *new_node)
 {
 	t_list	*tmp;
 
-	if (new_node == NULL )
+	if (!new_node)
 		return;
-	if (*lst == NULL)
+	if (!*lst)
 	{
 		*lst = new_node; //new_node'u listenin ilk (ve tek) elemanı yap
 		return;
 	} //Liste boş değilse, listenin sonunu bul (Normal Durum)
 	tmp = *lst;
-	while (tmp->next !=NULL)
+	while (tmp->next)
 	{
 		tmp = tmp->next;
 	}

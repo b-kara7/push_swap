@@ -6,7 +6,7 @@
 /*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 17:45:19 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/19 19:34:37 by bkara            ###   ########.fr       */
+/*   Updated: 2025/10/20 19:26:44 by bkara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,14 @@ void	ft_error_exit(void)
 	write(2, "ERROR\n", 6);
 	exit(1);
 }
+
 void	number_error(char *str)
 {
 	int	i;
-	
+
 	i = 0;
-	
 	if (!str || !str[0])
-	ft_error_exit();
-	
+		ft_error_exit();
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (!str)
@@ -33,7 +32,7 @@ void	number_error(char *str)
 	}
 	while (str[i])
 	{
-		if ( !(str[i] >= '0' && str[i] <= '9') )
+		if (!(str[i] >= '0' && str[i] <= '9'))
 			ft_error_exit();
 		i++;
 	}
