@@ -3,19 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
+/*   By: betul <betul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:12:33 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/20 22:04:48 by bkara            ###   ########.fr       */
+/*   Updated: 2025/10/25 13:39:33 by betul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
 
 #include "push_swap.h"
 
 void	turk_algorithm(t_list **a, t_list **b)
 {
 	t_list	*best;
+	int		size;
 
+	size = ft_lstsize(*a);
+	if (size == 2)
+	{
+		sort_two(a);
+		return;
+	}
+	if (size == 3)
+	{
+		sort_three(a);
+		return;
+	}
+	// 4 veya daha fazla eleman varsa:
 	first_push_b(a, b);
 	while (ft_lstsize(*a) > 3)
 	{
@@ -27,7 +42,7 @@ void	turk_algorithm(t_list **a, t_list **b)
 		pb(a, b);
 	}
 	sort_three(a);
-	while (b)
+	while (*b)
 		pa(a, b);
 }
 
