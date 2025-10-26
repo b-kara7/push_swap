@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	first_position(t_list *a)//first_position = elemanların listedeki sırasını kaydetmek. konumunu bulmak
+void	first_position(t_list *a)
 {
 	int	i;
 
@@ -25,55 +25,94 @@ void	first_position(t_list *a)//first_position = elemanların listedeki sırası
 	}
 }
 
-void	second_position(t_list *a, t_list *b)
+static int	calculate_rotate_cost(int pos, int size)
 {
-	t_list	*tmp;
-	int		target;
+	if (pos <= size / 2)
+		return (pos);
+	return (size - pos);
+}
 
-	while (a)
+static t_list	*find_best_target(t_list *a_node, t_list *b)
+{
+	t_list	*target;
+	t_list	*tmp;
+	int		closest;
+
+	target = NULL;
+	closest = 2147483647;
+	tmp = b;
+	while (tmp)
 	{
-		tmp = b;
-		target = b->content; // şimdilik A’daki elemanın gitmesi gereken yer olarak ilk B elemanını alır.
-		while (tmp) // b listesini dolaşıyoruz 
+		if (tmp->content > a_node->content && tmp->content < closest)
 		{
-			if (tmp->content > a->content) //  Eğer B’deki bir sayı (tmp->content), A’daki sayıdan büyükse (a->content), o sayı hedef olabilir, bu yüzden target’ı o değere eşitleriz.
-				target = tmp->content;
+			closest = tmp->content;
+			target = tmp;
+		}
+		tmp = tmp->next;
+	}
+	if (!target)
+	{
+		closest = 2147483647;
+		tmp = b;
+		while (tmp)
+		{
+			if (tmp->content < closest)
+			{
+				closest = tmp->content;
+				target = tmp;
+			}
 			tmp = tmp->next;
 		}
-		a->index = target; //Bulduğumuz target değerini A’daki elemanın index alanına kaydederiz.
-		a = a->next; // → Sonra sıradaki A elemanına geçeriz.
+	}
+	return (target);
+}
+
+void	second_position(t_list *a, t_list *b)
+{
+	t_list	*target;
+	int		size_a;
+	int		size_b;
+	int		cost_a;
+	int		cost_b;
+
+	size_a = ft_lstsize(a);
+	size_b = ft_lstsize(b);
+	while (a)
+	{
+		if (!b)
+		{
+			a->step = 0;
+			a = a->next;
+			continue;
+		}
+		target = find_best_target(a, b);
+		cost_a = calculate_rotate_cost(a->index, size_a);
+		if (target)
+			cost_b = calculate_rotate_cost(target->index, size_b);
+		else
+			cost_b = 0;
+		a->step = cost_a + cost_b;
+		a = a->next;
 	}
 }
 
 void	third_position(t_list *a)
 {
-	int	size;
-	int	half;
-
-	size = ft_lstsize(a);
-	half = size / 2;
-	while (a)
-	{
-		if (a->index <= half)
-			a->step = a->index; //üst yarıdaysa direk adım sayısı
-		else
-			a->step = size - a->index; //alt yarıdaysa ters döndürme
-		a = a->next;
-	}
+	(void)a;
 }
 
 t_list	*short_step(t_list *a)
 {
-	t_list	*best; //  şu ana kadar bulunan en az step’li elemanı tutuyor.
-	t_list	*tmp; // listeyi gezen pointer (yani elinde geziyor), ikisininde başlangıcı a
+	t_list	*best;
+	t_list	*tmp;
 
 	tmp = a;
 	best = a;
 	while (tmp)
 	{
 		if (tmp->step < best->step)
-			best = tmp; //  yeni daha küçük step bulundu, best artık onu gösteriyor
-		tmp = tmp->next; // tmp ileri gider
+			best = tmp;
+		tmp = tmp->next;
 	}
 	return (best);
 }

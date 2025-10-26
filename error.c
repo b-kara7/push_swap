@@ -14,7 +14,10 @@
 
 void	ft_error_exit(void)
 {
-	write(2, "ERROR\n", 6);
+	int	ret;
+
+	ret = write(2, "Error\n", 6);
+	(void)ret;
 	exit(1);
 }
 

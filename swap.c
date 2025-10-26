@@ -6,7 +6,7 @@
 /*   By: betul <betul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 13:36:53 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/25 13:39:21 by betul            ###   ########.fr       */
+/*   Updated: 2025/10/26 21:08:04 by betul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,32 @@ void	sa(t_list **x)
 {
 	if (!x || !*x || !(*x)->next)
 		return ;
+	int	ret;
+
 	swap(x);
-	write(1, "sa\n", 3);
+	ret = write(1, "sa\n", 3);
+	(void)ret;
 }
 
 void	sb(t_list **y)
 {
 	if (!y || !*y || !(*y)->next)
 		return ;
+	int	ret;
+
 	swap(y);
-	write(1, "sb\n", 3);
+	ret = write(1, "sb\n", 3);
+	(void)ret;
 }
 
 void	ss(t_list **x, t_list **y)
 {
 	if ((!x || !*x || !(*x)->next) && (!y || !*y || !(*y)->next))
 		return ;
+	int	ret;
+
 	swap(x);
 	swap(y);
-	write(1, "ss\n", 3);
+	ret = write(1, "ss\n", 3);
+	(void)ret;
 }

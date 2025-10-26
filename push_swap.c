@@ -6,11 +6,9 @@
 /*   By: betul <betul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:12:33 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/25 13:39:33 by betul            ###   ########.fr       */
+/*   Updated: 2025/10/27 00:12:59 by betul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "push_swap.h"
 
 #include "push_swap.h"
 
@@ -32,18 +30,32 @@ void	turk_algorithm(t_list **a, t_list **b)
 	}
 	// 4 veya daha fazla eleman varsa:
 	first_push_b(a, b);
+	if (size > 100)
+	{
+		big_chunk(a, b);
+		return ;
+	}
+	if (ft_lstsize(*a) > 3)
+		pb(a, b);
+	if (ft_lstsize(*a) > 3)
+		pb(a, b);
 	while (ft_lstsize(*a) > 3)
 	{
 		first_position(*a);
+		first_position(*b);
 		second_position(*a, *b);
-		third_position(*a);
 		best = short_step(*a);
 		back_best(a, best);
 		pb(a, b);
 	}
 	sort_three(a);
 	while (*b)
+	{
+		first_position(*b);
+		best = find_max(*b);
+		back_best(b, best);
 		pa(a, b);
+	}
 }
 
 void	sort_two(t_list **a)

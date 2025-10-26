@@ -1,46 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   is_sorted.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: betul <betul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/04 16:40:41 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/26 21:05:21 by betul            ###   ########.fr       */
+/*   Created: 2025/10/26 17:30:00 by betul             #+#    #+#             */
+/*   Updated: 2025/10/26 17:30:00 by betul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	push(t_list **start, t_list **end)
+int	is_sorted(t_list *a)
 {
-	t_list	*first;
+	t_list	*tmp;
 
-	if (!start || !*start)
-		return ;
-	first = *start;
-	*start = first->next;
-	first->next = *end;
-	*end = first;
-}
-
-void	pa(t_list **x, t_list **y)
-{
-	if (!y || !*y)
-		return ;
-	int ret;
-
-		push(y, x);
-	ret = write(1, "pa\n", 3);
-	(void)ret;
-}
-
-void	pb(t_list **x, t_list **y)
-{
-	if (!x || !*x)
-		return ;
-	int	ret ;
-	push(x, y);
-	ret = write(1, "pb\n", 3);
-	(void)ret;
+	if (!a)
+		return (1);
+	tmp = a;
+	while (tmp->next)
+	{
+		if (tmp->content > tmp->next->content)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
 }

@@ -14,9 +14,13 @@
 
 void	first_push_b(t_list **a, t_list **b)
 {
-	if (!a || !(*a))// a boşsa, a pointi boşsa
-		return;
-	pb(a, b);// ilk elenemanı b ye at
-	if (*a)//a da hala elemean varsa ikinciyide  at 
+	int	size;
+
+	if (!a || !(*a))
+		return ;
+	size = ft_lstsize(*a);
+	if (size > 3)
+		pb(a, b);
+	if (size > 4)
 		pb(a, b);
 }

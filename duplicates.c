@@ -1,46 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   duplicates.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: betul <betul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/04 16:40:41 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/26 21:05:21 by betul            ###   ########.fr       */
+/*   Created: 2025/10/26 17:06:51 by betul             #+#    #+#             */
+/*   Updated: 2025/10/26 17:06:51 by betul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	push(t_list **start, t_list **end)
+int	duplicates(t_list *a)
 {
-	t_list	*first;
+	t_list	*tmp;
+	t_list	*check;
 
-	if (!start || !*start)
-		return ;
-	first = *start;
-	*start = first->next;
-	first->next = *end;
-	*end = first;
+	tmp = a;
+	while (tmp != NULL)
+	{
+		check = tmp->next;
+		while (check != NULL)
+		{
+			if (tmp->content == check->content)
+				return (1);
+			check = check->next;
+		}
+		tmp = tmp->next;
+	}
+	return (0);
 }
 
-void	pa(t_list **x, t_list **y)
+void	free_list(t_list *head)
 {
-	if (!y || !*y)
-		return ;
-	int ret;
+	t_list	*tmp;
 
-		push(y, x);
-	ret = write(1, "pa\n", 3);
-	(void)ret;
-}
-
-void	pb(t_list **x, t_list **y)
-{
-	if (!x || !*x)
-		return ;
-	int	ret ;
-	push(x, y);
-	ret = write(1, "pb\n", 3);
-	(void)ret;
+	while (head != NULL)
+	{
+		tmp = head;
+		head = head->next;
+		free(tmp);
+	}
 }
