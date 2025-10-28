@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
+/*   By: betul <betul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:50:45 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/28 14:17:19 by bkara            ###   ########.fr       */
+/*   Updated: 2025/10/28 16:45:21 by betul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <limits.h>
 
-static int	is_valid_number(char *str)
+/* static int	is_valid_number(char *str)
 {
 	int		i;
 	long	num;
@@ -56,9 +56,9 @@ static int	check_numbers(char **res)
 		i++;
 	}
 	return (1);
-}
+} */
 
-static void	push_all(t_list **a, char **res)
+/* static void	push_all(t_list **a, char **res)
 {
 	int		i;
 	t_list	*new;
@@ -70,35 +70,38 @@ static void	push_all(t_list **a, char **res)
 		ft_lstadd_back(a, new);
 		i++;
 	}
+} */
+#include <stdio.h>
+
+void	print_list(t_list *lst)
+{
+    t_list	*current;
+
+    current = lst;
+    while (current)
+    {
+        printf("%d\n", current->content);
+        current = current->next;
+    }
 }
 
 int	main(int ac, char **av)
 {
 	t_list	*a;
-	t_list	*b;
-	char	**res;
+	//t_list	*b;
 
 	a = NULL;
-	b = NULL;
-	res = NULL;
+	//b = NULL;
 	if (ac < 2)
 		return (0);
-	if (ac == 2)
-	{
-		res = (ft_split(av[1], ' '));
-		if (!res)
-			return (1);
-	}
-	else
-		res = av + 1;
-	if (!check_numbers(res))
-	{
-		if (ac == 2)
-			ft_free_split(res);
-		ft_error_exit();
-	}
-	push_all(&a, res);
-	if (duplicates(a))
+	if (ac >= 2)
+		parse_arguments(av, &a);
+	print_list(a);
+	free_lst(&a);
+	
+		
+	/* push_all(&a, res);
+	if (duplicates(&a))
 	{
 		free_list(a);
 		if (ac == 2)
@@ -121,5 +124,5 @@ int	main(int ac, char **av)
 	free_list(a);
 	if (ac == 2)
 		ft_free_split(res);
-	return (0);
+	return (0); */
 }

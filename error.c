@@ -3,25 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
+/*   By: betul <betul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 17:45:19 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/20 19:26:44 by bkara            ###   ########.fr       */
+/*   Updated: 2025/10/28 16:38:55 by betul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_error_exit(void)
-{
-	int	ret;
-
-	ret = write(2, "Error\n", 6);
-	(void)ret;
-	exit(1);
-}
-
-void	number_error(char *str)
+/* void	number_error(char *str)
 {
 	int	i;
 
@@ -39,4 +30,4 @@ void	number_error(char *str)
 			ft_error_exit();
 		i++;
 	}
-}
+} */

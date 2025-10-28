@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
+/*   By: betul <betul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:12:36 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/28 14:03:59 by bkara            ###   ########.fr       */
+/*   Updated: 2025/10/28 16:40:04 by betul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 typedef struct s_list
 {
@@ -32,13 +33,15 @@ t_list	*ft_lstnew(int content);
 void	ft_lstadd_back(t_list **lst, t_list *new_node);
 char	**ft_split(char const *s, char c);
 void	ft_free_split(char **res);
-int		ft_atoi_ps(const char *str);
-void	sort_three(t_list **a);
-void	sort_two(t_list **a);
-void	ft_error_exit(void);
-int		duplicates(t_list *a);
-void	free_list(t_list *head);
+int	ft_atoi_ps(const char *str, t_list **a, char **words);
+void	parse_arguments(char **argv, t_list **stack_a);
+void	duplicates(t_list **a);
+void	free_lst(t_list **lst);
 int		is_sorted(t_list *a);
+void    free_lst(t_list **lst);
+void    free_lst_error(t_list **lst);
+void    small_sort(t_list **a);
+void	parse_arguments(char **argv, t_list **a);
 
 void	first_position(t_list *a);
 void	second_position(t_list *a, t_list *b);

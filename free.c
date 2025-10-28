@@ -1,46 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: betul <betul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/04 16:40:41 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/28 16:36:08 by betul            ###   ########.fr       */
+/*   Created: 2025/10/28 14:34:21 by betul             #+#    #+#             */
+/*   Updated: 2025/10/28 14:52:51 by betul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	push(t_list **start, t_list **end)
+void    free_lst(t_list **lst)
 {
-	t_list	*first;
+    t_list	*tmp;
+    t_list   *next;
 
-	if (!start || !*start)
-		return ;
-	first = *start;
-	*start = first->next;
-	first->next = *end;
-	*end = first;
+    tmp = *lst;
+    while (tmp)
+    {
+        next = tmp->next;
+        free(tmp);
+        tmp = next;
+    }
 }
 
-void	pa(t_list **x, t_list **y)
+void    free_lst_error(t_list **lst)
 {
-	int ret;
-	if (!y || !*y)
-		return ;
-	push(y, x);
-	ret = write(1, "pa\n", 3);
-	(void)ret;
-}
+    t_list	*tmp;
+    t_list   *next;
 
-void	pb(t_list **x, t_list **y)
-{
-	int	ret ;
-	if (!x || !*x)
-		return ;
-	
-	push(x, y);
-	ret = write(1, "pb\n", 3);
-	(void)ret;
+    tmp = *lst;
+    while (tmp)
+    {
+        next = tmp->next;
+        free(tmp);
+        tmp = next;
+    }
+    write(2, "Error\n", 6);
+    exit(1);
 }

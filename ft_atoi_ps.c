@@ -3,17 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi_ps.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
+/*   By: betul <betul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 20:27:28 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/20 22:11:46 by bkara            ###   ########.fr       */
+/*   Updated: 2025/10/28 15:59:57 by betul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <limits.h>
 
-static int	get_sign(const char *s, int i)
+static void free_exit(t_list **a, char **words)
+{
+	ft_free_split(words);
+	free_lst_error(a);
+}
+static int	get_sign(const char *s, int i, t_list **a, char **words)
 {
 	int	sign;
 
@@ -21,14 +25,14 @@ static int	get_sign(const char *s, int i)
 	if (s[i] == '-' || s[i] == '+')
 	{
 		if (!s[i + 1] || (s[i + 1] < '0' || s[i + 1] > '9'))
-			ft_error_exit();
+			free_exit(a, words);
 		if (s[i] == '-')
 			sign = -1;
 	}
 	return (sign);
 }
 
-int	ft_atoi_ps(const char *str)
+int	ft_atoi_ps(const char *str, t_list **a, char **words)
 {
 	long	res;
 	int		sign;
@@ -36,19 +40,19 @@ int	ft_atoi_ps(const char *str)
 
 	res = 0;
 	i = 0;
-	if (!str || !str[0])
-		ft_error_exit();
-	sign = get_sign(str, i);
+	if (!str)
+		free_exit(a, words);
+	sign = get_sign(str, i, a, words);
 	if (str[i] == '-' || str[i] == '+')
 		i++;
 	while (str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')
-			ft_error_exit();
+			free_exit(a, words);
 		res = res * 10 + (str[i] - '0');
 		i++;
 		if ((res * sign) > INT_MAX || (res * sign) < INT_MIN)
-			ft_error_exit();
+			free_exit(a, words);
 	}
 	return ((int)(res * sign));
 }
