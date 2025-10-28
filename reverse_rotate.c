@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: betul <betul@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 16:26:11 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/26 21:06:23 by betul            ###   ########.fr       */
+/*   Updated: 2025/10/28 14:15:37 by bkara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,9 @@ static void	reverse_rotate(t_list **stack)
 
 void	rra(t_list **x)
 {
+	int	ret;
 	if (!x || !*x || !(*x)->next)
 		return ;
-
-	int	ret;
 
 	reverse_rotate(x);
 	ret = write(1, "rra\n", 4);
@@ -42,9 +41,9 @@ void	rra(t_list **x)
 
 void	rrb(t_list **y)
 {
+	int	ret;
 	if (!y || !*y || !(*y)->next)
 		return ;
-	int	ret;
 
 	reverse_rotate(y);
 	ret = write(1, "rrb\n", 4);
@@ -53,9 +52,9 @@ void	rrb(t_list **y)
 
 void	rrr(t_list **x, t_list **y)
 {
+	int	ret;
 	if ((!x || !*x || !(*x)->next) && (!y || !*y || !(*y)->next))
 		return ;
-	int	ret;
 
 	reverse_rotate(x);
 	reverse_rotate(y);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: betul <betul@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 16:04:30 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/26 21:07:18 by betul            ###   ########.fr       */
+/*   Updated: 2025/10/28 14:16:09 by bkara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static void	rotate(t_list **stack)
 
 void	ra(t_list **x)
 {
+	int	ret;
 	if (!x || !*x || !(*x)->next)
 		return ;
-	int	ret;
 
 	rotate(x);
 	ret = write(1, "ra\n", 3);
@@ -41,10 +41,10 @@ void	ra(t_list **x)
 
 void	rb(t_list **y)
 {
+	int	ret;
 	if (!y || !*y || !(*y)->next)
 		return ;
-	int	ret;
-
+	
 	rotate(y);
 	ret = write(1, "rb\n", 3);
 	(void)ret;
@@ -52,10 +52,10 @@ void	rb(t_list **y)
 
 void	rr(t_list **x, t_list **y)
 {
+	int	ret;
 	if ((!x || !*x || !(*x)->next) && (!y || !*y || !(*y)->next))
 		return ;
-	int	ret;
-
+	
 	rotate(x);
 	rotate(y);
 	ret = write(1, "rr\n", 3);

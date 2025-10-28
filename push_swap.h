@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: betul <betul@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:12:36 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/26 20:48:38 by betul            ###   ########.fr       */
+/*   Updated: 2025/10/28 14:03:59 by bkara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	first_push_b(t_list **a, t_list **b);
 int		ft_lstsize(t_list *stack);
 t_list	*find_max(t_list *stack);
 void	turk_algorithm(t_list **a, t_list **b);
-void	big_chunk(t_list **a, t_list **b);
 t_list	*ft_lstnew(int content);
 void	ft_lstadd_back(t_list **lst, t_list *new_node);
 char	**ft_split(char const *s, char c);

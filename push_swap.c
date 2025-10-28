@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: betul <betul@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:12:33 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/27 00:12:59 by betul            ###   ########.fr       */
+/*   Updated: 2025/10/28 14:04:26 by bkara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,6 @@ void	turk_algorithm(t_list **a, t_list **b)
 	{
 		sort_three(a);
 		return;
-	}
-	// 4 veya daha fazla eleman varsa:
-	first_push_b(a, b);
-	if (size > 100)
-	{
-		big_chunk(a, b);
-		return ;
 	}
 	if (ft_lstsize(*a) > 3)
 		pb(a, b);

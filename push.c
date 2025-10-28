@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: betul <betul@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/04 16:40:41 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/26 21:05:21 by betul            ###   ########.fr       */
+/*   Updated: 2025/10/28 14:17:12 by bkara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static void	push(t_list **start, t_list **end)
 
 void	pa(t_list **x, t_list **y)
 {
+	int ret;
 	if (!y || !*y)
 		return ;
-	int ret;
 
 		push(y, x);
 	ret = write(1, "pa\n", 3);
@@ -37,9 +37,10 @@ void	pa(t_list **x, t_list **y)
 
 void	pb(t_list **x, t_list **y)
 {
+	int	ret ;
 	if (!x || !*x)
 		return ;
-	int	ret ;
+	
 	push(x, y);
 	ret = write(1, "pb\n", 3);
 	(void)ret;
