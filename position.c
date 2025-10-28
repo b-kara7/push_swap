@@ -3,127 +3,225 @@
 /*                                                        :::      ::::::::   */
 /*   position.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
+/*   By: betul <betul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:34:38 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/20 22:06:53 by bkara            ###   ########.fr       */
+/*   Updated: 2025/10/28 23:04:57 by betul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	first_position(t_list *a)
+int is_first_half(t_list *lst, int number)
 {
-	int	i;
+	int	size;
+	int	position;
 
-	i = 0;
-	while (a)
+	size = ft_lstsize(lst);
+	position = 0;
+	while (lst)
 	{
-		a->index = i;
-		a = a->next;
-		i++;
+		if (lst->content == number)
+			break ;
+		position++;
+		lst = lst->next;
 	}
+	if (position <= size / 2)
+		return (1);
+	else
+		return (0);
 }
 
-static int	calculate_rotate_cost(int pos, int size)
+int	cost_calculator(t_list *lst, int number)
 {
-	if (pos <= size / 2)
-		return (pos);
-	return (size - pos);
-}
-
-static t_list	*find_best_target(t_list *a_node, t_list *b)
-{
-	t_list	*target;
-	t_list	*tmp;
-	int		closest;
-
-	target = NULL;
-	closest = 2147483647;
-	tmp = b;
-	while (tmp)
+	int	cost;
+	int	half;
+	
+	half = is_first_half(lst, number);
+	cost = 0;
+	while (lst)
 	{
-		if (tmp->content > a_node->content && tmp->content < closest)
-		{
-			closest = tmp->content;
-			target = tmp;
-		}
-		tmp = tmp->next;
+		if (lst->content == number)
+			break ;
+		cost++;
+		lst = lst->next;
 	}
-	if (!target)
-	{
-		closest = 2147483647;
-		tmp = b;
-		while (tmp)
-		{
-			if (tmp->content < closest)
-			{
-				closest = tmp->content;
-				target = tmp;
-			}
-			tmp = tmp->next;
-		}
-	}
-	return (target);
+	if (half == 0)
+		cost = ft_lstsize(lst) - cost;
+	return (cost);
 }
 
-void	second_position(t_list *a, t_list *b)
+int	target_in_b(int a_number, t_list *b)
 {
-	t_list	*target;
-	int		size_a;
-	int		size_b;
-	int		cost_a;
-	int		cost_b;
+    t_list	*temp;
+    int		result;
+    int		check;
 
-	size_a = ft_lstsize(a);
-	size_b = ft_lstsize(b);
-	while (a)
-	{
-		if (!b)
-		{
-			a->step = 0;
-			a = a->next;
-			continue;
-		}
-		target = find_best_target(a, b);
-		cost_a = calculate_rotate_cost(a->index, size_a);
-		if (target)
-			cost_b = calculate_rotate_cost(target->index, size_b);
-		else
-			cost_b = 0;
-		a->step = cost_a + cost_b;
-		a = a->next;
-	}
+    check = 0;
+    temp = b;
+    result = -2147483648;
+    while (temp)
+    {
+        if (temp->content < a_number)
+        {
+            if (temp->content >= result)
+            {
+                check = 1;
+                result = temp->content;
+            }
+        }
+        temp = temp->next;
+    }
+    if (!check)
+        return (max_number(b));
+    return (result);
 }
 
-void	third_position(t_list *a)
+int	target_in_a(int b_number, t_list *a)
 {
-	(void)a;
+    t_list	*temp;
+    int		result;
+    int		check;
+
+    check = 0;
+    temp = a;
+    result = 2147483647;
+    while (temp)
+    {
+        if (temp->content > b_number)
+        {
+            if (temp->content <= result)
+            {
+                check = 1;
+                result = temp->content;
+            }
+        }
+        temp = temp->next;
+    }
+    if (!check)
+        return (min_number(a));
+    return (result);
 }
 
-t_list	*short_step(t_list *a)
+int	calc_min_cost_a(t_list *a, t_list *b, int a_num)
 {
-	t_list	*best;
-	t_list	*tmp;
+    int	cost_a;
+    int	cost_b;
+    int	target;
 
-	tmp = a;
-	best = a;
-	while (tmp)
-	{
-		if (tmp->step < best->step)
-			best = tmp;
-		tmp = tmp->next;
-	}
-	return (best);
+    cost_a = cost_calculator(a, a_num);
+    target = target_in_b(a_num, b);
+    cost_b = cost_calculator(b, target);
+    return (cost_a + cost_b);
+}
+int	find_cheapest_a(t_list *a, t_list *b)
+{
+    t_list	*temp;
+    int		min_cost;
+    int		cheapest_num;
+    int		cost;
+
+    temp = a;
+    min_cost = INT_MAX;
+    cheapest_num = 0;
+    while (temp)
+    {
+        cost = calc_min_cost_a(a, b, temp->content);
+        if (cost < min_cost)
+        {
+            min_cost = cost;
+            cheapest_num = temp->content;
+        }
+        temp = temp->next;
+    }
+    return (cheapest_num);
 }
 
-void	back_best(t_list **a, t_list *best)
+int	calc_min_cost_b(t_list *a, t_list *b, int b_num)
 {
-	while (*a != best)
+    int	cost_a;
+    int	cost_b;
+    int	target;
+
+    cost_b = cost_calculator(b, b_num);
+    target = target_in_a(b_num, a);
+    cost_a = cost_calculator(a, target);
+    return (cost_a + cost_b);
+}
+
+int	find_cheapest_b(t_list *a, t_list *b)
+{
+    t_list	*temp;
+    int		min_cost;
+    int		cheapest_num;
+    int		cost;
+
+    temp = b;
+    min_cost = INT_MAX;
+    cheapest_num = 0;
+    while (temp)
+    {
+        cost = calc_min_cost_b(a, b, temp->content);
+        if (cost < min_cost)
+        {
+            min_cost = cost;
+            cheapest_num = temp->content;
+        }
+        temp = temp->next;
+    }
+    return (cheapest_num);
+}
+
+void	move_up_a(int number, t_list **a)
+{
+	if (is_first_half(*a, number) == 1)
 	{
-		if (best->index <= ft_lstsize(*a) / 2)
+		while ((*a)->content != number)
 			ra(a);
-		else
+	}
+	else
+	{
+		while ((*a)->content != number)
 			rra(a);
 	}
+}
+
+void	move_up_b(int number, t_list **b)
+{
+	if (is_first_half(*b, number) == 1)
+	{
+		while ((*b)->content != number)
+			ra(b);
+	}
+	else
+	{
+		while ((*b)->content != number)
+			rra(b);
+	}
+}
+
+void	push_to_b(t_list **a, t_list **b)
+{
+	int best;
+
+    while (ft_lstsize(*a) > 3)
+	{
+		best = find_cheapest_a(*a, *b);
+		move_up_a(best, a);
+		move_up_b(target_in_b(best, *b), b);
+        pb(a, b);
+    }
+}
+
+void	push_to_a(t_list **a, t_list **b)
+{
+	int best;
+
+    while (b)
+	{
+		best = find_cheapest_b(*a, *b);
+		move_up_a(target_in_a(best, *a), a);
+		move_up_b(best, b);
+        pa(a, b);
+    }
 }

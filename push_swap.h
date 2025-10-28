@@ -6,7 +6,7 @@
 /*   By: betul <betul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:12:36 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/28 16:40:04 by betul            ###   ########.fr       */
+/*   Updated: 2025/10/28 23:03:12 by betul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,11 @@
 typedef struct s_list
 {
 	int				content;
-	int				index;
 	int				step;
 	struct s_list	*next;
 }	t_list;
 
-void	first_push_b(t_list **a, t_list **b);
 int		ft_lstsize(t_list *stack);
-t_list	*find_max(t_list *stack);
 void	turk_algorithm(t_list **a, t_list **b);
 t_list	*ft_lstnew(int content);
 void	ft_lstadd_back(t_list **lst, t_list *new_node);
@@ -43,11 +40,12 @@ void    free_lst_error(t_list **lst);
 void    small_sort(t_list **a);
 void	parse_arguments(char **argv, t_list **a);
 
-void	first_position(t_list *a);
-void	second_position(t_list *a, t_list *b);
-void	third_position(t_list *a);
-void	back_best(t_list **a, t_list *best);
-t_list	*short_step(t_list *a);
+int	min_number(t_list *stack);
+int	max_number(t_list *stack);
+void	push_to_b(t_list **a, t_list **b);
+void	push_to_a(t_list **a, t_list **b);
+
+
 
 void	sa(t_list **x);
 void	sb(t_list **y);

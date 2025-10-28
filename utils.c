@@ -6,7 +6,7 @@
 /*   By: betul <betul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 17:39:13 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/28 15:34:12 by betul            ###   ########.fr       */
+/*   Updated: 2025/10/28 22:22:22 by betul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ t_list	*ft_lstnew(int content)
 	if (new_node == NULL)
 		return NULL;
 	new_node ->content = content; // gelen sayıyı (content) ata.
-	new_node ->index = 0;
 	new_node->next = NULL; // yap (çünkü bu şimdilik son eleman).
 	return (new_node);
 }
@@ -60,20 +59,37 @@ void	ft_lstadd_back(t_list **lst, t_list *new_node)
 	tmp->next = new_node; //O son elemanın 'next'ine, yeni düğümümüzü ('new_node') bağla.
 }
 
-t_list	*find_max(t_list *stack)
+int	max_number(t_list *stack)
 {
-	t_list	*max_node;
-	t_list	*tmp;
+    t_list	*temp;
+    int		max;
 
-	if (!stack)
-		return (NULL);
-	max_node = stack;
-	tmp = stack;
-	while (tmp)
-	{
-		if (tmp->content > max_node->content)
-			max_node = tmp;
-		tmp = tmp->next;
-	}
-	return (max_node);
+    if (!stack)
+        return (0);
+    temp = stack;
+    max = temp->content;
+    while (temp)
+    {
+        if (temp->content > max)
+            max = temp->content;
+        temp = temp->next;
+    }
+    return (max);
+}
+int	min_number(t_list *stack)
+{
+    t_list	*temp;
+    int		min;
+
+    if (!stack)
+        return (0);
+    temp = stack;
+    min = temp->content;
+    while (temp)
+    {
+        if (temp->content < min)
+            min = temp->content;
+        temp = temp->next;
+    }
+    return (min);
 }
