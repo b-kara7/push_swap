@@ -6,7 +6,7 @@
 /*   By: betul <betul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:12:36 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/28 23:03:12 by betul            ###   ########.fr       */
+/*   Updated: 2025/10/29 13:54:18 by betul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,18 @@ int	min_number(t_list *stack);
 int	max_number(t_list *stack);
 void	push_to_b(t_list **a, t_list **b);
 void	push_to_a(t_list **a, t_list **b);
-
-
+int	calc_min_cost_a(t_list *a, t_list *b, int a_num);
+int cost_calculator(t_list *lst, int number);
+int	target_in_b(int a_number, t_list *b);
+int	target_in_a(int b_number, t_list *a);
+int	is_first_half(t_list *lst, int number);
+int	find_cheapest_a(t_list *a, t_list *b);
+int	calc_min_cost_b(t_list *a, t_list *b, int b_num);
+int	find_cheapest_b(t_list *a, t_list *b);
+void	move_up_a(int number, t_list **a);
+void	move_up_b(int number, t_list **b);
+void	push_to_b(t_list **a, t_list **b);
+void	push_to_a(t_list **a, t_list **b);
 
 void	sa(t_list **x);
 void	sb(t_list **y);
