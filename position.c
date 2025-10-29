@@ -6,7 +6,7 @@
 /*   By: betul <betul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:34:38 by bkara             #+#    #+#             */
-/*   Updated: 2025/10/29 13:47:00 by betul            ###   ########.fr       */
+/*   Updated: 2025/10/29 14:55:00 by betul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ int	cost_calculator(t_list *lst, int number)
 {
 	int	cost;
 	int	half;
+    int size;
 	
+    size = ft_lstsize(lst);
 	half = is_first_half(lst, number);
 	cost = 0;
 	while (lst)
@@ -47,7 +49,7 @@ int	cost_calculator(t_list *lst, int number)
 		lst = lst->next;
 	}
 	if (half == 0)
-		cost = ft_lstsize(lst) - cost;
+		cost = size - cost;
 	return (cost);
 }
 
